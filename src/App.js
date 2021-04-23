@@ -1,10 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import TaskContainer from './components/TaskContainer'
+import CompleteTaskContainer from './components/CompleteTaskContainer'
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello!</h1>
+      <TaskContainer />
+      <CompleteTaskContainer />
     </div>
   );
 }
