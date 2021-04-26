@@ -1,36 +1,39 @@
-import React, { Component } from 'react'
+import React, {useState} from 'react'
 import TaskInputField from './TaskInputField';
 
-export default class NewTaskForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      inputs: ['input-0'],
-    };
-}
+export default function NewTaskForm(props) {
+  const [inputs, setInputs] = useState(['input-0'])
 
-  render() {
-    const inputFields = this.state.inputs.map(input => 
-      <TaskInputField input={input} />
+    let appendInput = () => {
+      var newInput = `input-${this.state.inputs.length}`;
+      this.setState(prevState => ({ inputs: prevState.inputs.concat([newInput]) }));
+    }
+
+    const inputFields = inputs.map(input => 
+      <div>
+        <TaskInputField input={input} />
+        <input type="submit" /> <button>Delete</button>
+      </div>
     )
 
     return (
       <div>
-        <form>
+        <form onSubmit={props.handleSubmit}>
           <div id="dynamicInput">
             {inputFields}
           </div>
         </form>
 
-        <button onClick={ () => this.appendInput() }>
-          +++ 
-        </button>
+        {(() => {
+          if (inputs.length < 1) {
+            return (
+              <button onClick={ () => appendInput() } >
+                +++ 
+              </button>
+            )
+          }
+        })()}
+
       </div>
     )
-  }
-  
-  appendInput() {
-    var newInput = `input-${this.state.inputs.length}`;
-    this.setState(prevState => ({ inputs: prevState.inputs.concat([newInput]) }));
-  }
 }
