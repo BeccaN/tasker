@@ -1,8 +1,9 @@
 import React from 'react'
+import {connect} from 'react-redux';
 import NewTaskForm from './NewTaskForm'
 import Task from './Task'
 
-export default function TaskContainer(props) {
+function TaskContainer(props) {
   return(
     <div className="task-container">
       <h1>To Do Tasks</h1>
@@ -11,3 +12,13 @@ export default function TaskContainer(props) {
     </div>
   );
 }
+
+const mapStatetoProps = state => {
+  return {
+    tasks: state.tasks
+  }
+}
+
+export default connect(
+  mapStatetoProps
+)(TaskContainer)

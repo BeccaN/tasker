@@ -1,39 +1,30 @@
 import React, {useState} from 'react'
-import TaskInputField from './TaskInputField';
+import { connect } from 'react-redux';
 
-export default function NewTaskForm(props) {
-  const [inputs, setInputs] = useState(['input-0'])
+function NewTaskForm() {
+  const [task, setTask] = useState('')
 
-    let appendInput = () => {
-      var newInput = `input-${this.state.inputs.length}`;
-      this.setState(prevState => ({ inputs: prevState.inputs.concat([newInput]) }));
-    }
+  const handleSubmit = event => {
+    event.preventDefault()
+    console.log(task)
+  }
 
-    const inputFields = inputs.map(input => 
-      <div>
-        <TaskInputField input={input} />
-        <input type="submit" /> <button>Delete</button>
-      </div>
-    )
-
-    return (
-      <div>
-        <form onSubmit={props.handleSubmit}>
-          <div id="dynamicInput">
-            {inputFields}
-          </div>
-        </form>
-
-        {(() => {
-          if (inputs.length < 1) {
-            return (
-              <button onClick={ () => appendInput() } >
-                +++ 
-              </button>
-            )
-          }
-        })()}
-
-      </div>
-    )
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="New Task" value={task} onChange={e => setTask(e.target.value)}/>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  )
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addTask: () => dispatch({ type: 'ADD_TASK' })
+  };
+};
+
+export default connect(
+  mapDispatchToProps
+)(NewTaskForm);
