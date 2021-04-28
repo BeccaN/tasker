@@ -1,6 +1,6 @@
 export default function manageTasks(
   state = {
-  tasks: ['do laundry', 'pay bills', 'walk the dog'],
+  tasks: [],
 }, action) {
   switch(action.type) {
     case 'ADD_TASK':

@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
+import {addTask} from '../actions/tasks'
 import { connect } from 'react-redux';
 
-function NewTaskForm() {
+function NewTaskForm(props) {
   const [task, setTask] = useState('')
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log(task)
+    props.addTask(task)
   }
 
   return (
@@ -21,10 +22,12 @@ function NewTaskForm() {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addTask: () => dispatch({ type: 'ADD_TASK' })
+    addTask: (newTask) => {
+      dispatch(addTask(newTask))
+    }
   };
 };
 
-export default connect(
+export default connect(null, 
   mapDispatchToProps
 )(NewTaskForm);
