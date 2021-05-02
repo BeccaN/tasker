@@ -13,7 +13,7 @@ export default function tasks(state = [
 
     case 'REMOVE_TASK':
       const idx = state.findIndex(task => task.id === action.id)
-      return [...state.slice(0, idx), ...state.slice(idx + 1)]
+      return state.filter(task => task.id !== idx)
 
     default:
       return state
