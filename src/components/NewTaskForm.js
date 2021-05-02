@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {addTask} from '../actions/tasks'
+import {addTask} from '../actions/index'
 import { connect } from 'react-redux';
 
 function NewTaskForm(props) {
@@ -8,6 +8,7 @@ function NewTaskForm(props) {
   const handleSubmit = event => {
     event.preventDefault()
     props.addTask(task)
+
   }
 
   return (

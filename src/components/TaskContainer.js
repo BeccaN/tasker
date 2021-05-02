@@ -13,12 +13,8 @@ function TaskContainer(props) {
   );
 }
 
-const mapStatetoProps = state => {
-  return {
-    tasks: state.tasks
-  }
+const mapStateToProps = state => {
+  return { tasks: state.tasks }
 }
 
-export default connect(
-  mapStatetoProps
-)(TaskContainer)
+export default connect(mapStateToProps)(TaskContainer)
